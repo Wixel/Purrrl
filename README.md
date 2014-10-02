@@ -29,7 +29,7 @@ After receiving your file, the server generates an MD5 hash of the uploaded file
 ###### Show a list of all your uploaded files using: 
 
 ```shell
-purrrl files
+purrrl ls
 ````
 
 ###### Delete an uploaded file resource:
@@ -41,7 +41,7 @@ purrrl rm full_url
 ###### Searching files using grep:
 
 ```shell
-purrrl files | grep 'query'
+purrrl ls | grep 'query'
 ````
 
 Instead of using the full `purrrl` command, you also have a shorthand version called `prl`

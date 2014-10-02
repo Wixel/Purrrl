@@ -142,8 +142,8 @@ class Purrrl < Thor
     end      
   end
   
-  desc "files", "Display a list of files you've uploaded to your Purrrl account"
-  def files
+  desc "ls", "Display a list of files you've uploaded to your Purrrl account"
+  def ls
     begin
       files = JSON.parse(RestClient.get(Purrrl.api_url("files"), {
         :params => {:api_key => Purrrl.api_key}
@@ -180,8 +180,8 @@ class Purrrl < Thor
   #  end    
   #end  
   
-  desc "delete <url>", "Delete an uploaded file resource using its path"
-  def delete(url)
+  desc "rm <url>", "Delete an uploaded file resource using its path"
+  def rm(url)
     begin
       uri = URI.parse(url)
       
