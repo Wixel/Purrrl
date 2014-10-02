@@ -11,8 +11,7 @@ class Purrrl < Thor
   # Return the base URL of the API service
   #
   def self.base_url 
-    #"http://purrrl.link"
-        "http://0.0.0.0:9292"
+    "http://purrrl.link"
   end
   
   # Return the constructed service API path
