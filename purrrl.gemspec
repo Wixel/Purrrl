@@ -1,14 +1,14 @@
 Gem::Specification.new do |s|
   s.name        = "purrrl"
-  s.version     = "0.0.3"
+  s.version     = "0.0.4"
   s.date        = "2014-10-02"
   s.summary     = "Share files using your terminal"
-  s.description = "Simple and fast file sharing for developers."
+  s.description = "Fast & simple file sharing for developers - http://purrrl.link"
   s.authors     = ["Sean Nieuwoudt"]
   s.email       = "sean@wixelhq.com"
   s.files       = ["lib/purrrl.rb"]
-  s.homepage    = "https://github.com/Wixel/Purrrl"
   s.license     = "GPL"
+  s.homepage    = 'https://purrrl.link'
   s.executables << 'purrrl'
   s.executables << 'prl'
   
