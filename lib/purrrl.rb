@@ -3,19 +3,28 @@ require "colorize"
 require "rest_client"
 require 'json'
 require 'filesize'
+require 'io/console'
+require 'uri/http'
+require 'pp'
 
 class Purrrl < Thor
   # Return the base URL of the API service
   #
   def self.base_url 
-    "http://purrrl.link"
+    #"http://purrrl.link"
+        "http://0.0.0.0:9292"
   end
   
   # Return the constructed service API path
   #
+  # @param string resource
   # @param string path
-  def self.api_url(path)
-    "#{self.base_url}/api/#{path}"
+  def self.api_url(resource, path = nil)
+    if !path.nil?
+      "#{self.base_url}/api/#{resource}#{path}"
+    else
+      "#{self.base_url}/api/#{resource}"      
+    end
   end
   
   # Return the API key path
@@ -82,12 +91,24 @@ class Purrrl < Thor
   
   #### API Methods ####
   
-  desc "login <email> <password>", "Log into your Purrrl account and store the API key on this machine"
-  def login(email_address, password)
+  desc "login", "Log into your Purrrl account and store the API key on this machine"
+  def login
+    begin
+      puts "Log In - Purrrl"
+      puts "---------------"
+      print "Email Address: "
+      @email_address = STDIN.gets.chomp
+      print "Password: "
+      @password = STDIN.noecho(&:gets).chomp
+      puts "\n\nChecking..."
+    rescue Exception => e
+      exit
+    end
+
     begin
       response = JSON.parse(RestClient.post(Purrrl.api_url("authenticate"), {
-        :email    => email_address, 
-        :password => password
+        :email    => @email_address, 
+        :password => @password
       }))
     
       if response["success"]
@@ -139,7 +160,45 @@ class Purrrl < Thor
       puts e.message.red
     end    
   end
-
+  
+  #desc "upload_directory", "Upload an entire directory of files at once"
+  #def upload_dir
+  #  begin
+  #    files = JSON.parse(RestClient.get(Purrrl.api_url("files"), {
+  #      :params => {:api_key => Purrrl.api_key}
+  #    }))
+      
+  #    files.each do |file|
+  #      print Purrrl.share_url(file).green
+  #      print "\t"
+  #      print file["name"]
+  #      print " (#{Filesize.from("#{file["size"]} B").pretty})".blue
+  #      print "\n"
+  #    end
+  #  rescue Exception => e
+  #    puts e.message.red
+  #  end    
+  #end  
+  
+  desc "delete <url>", "Delete an uploaded file resource using its path"
+  def delete(url)
+    begin
+      uri = URI.parse(url)
+      
+      response = JSON.parse(RestClient.delete(Purrrl.api_url("delete", uri.path), {
+        :params => {:api_key => Purrrl.api_key}
+      }))      
+      
+      if response["success"]
+        puts "✓ File remove".green
+      else
+        puts "✗ #{response["message"]}".red
+      end
+    rescue Exception => e
+      puts e.message.red
+    end    
+  end  
+  
 end
 
 Purrrl.start(ARGV)

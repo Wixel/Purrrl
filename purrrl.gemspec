@@ -1,15 +1,16 @@
 Gem::Specification.new do |s|
   s.name        = "purrrl"
-  s.version     = "0.0.1"
+  s.version     = "0.0.2"
   s.date        = "2014-09-25"
   s.summary     = "Share files using your terminal"
-  s.description = "The simplest way to share files using nothing but your terminal."
+  s.description = "Simple and fast file sharing for developers."
   s.authors     = ["Sean Nieuwoudt"]
   s.email       = "sean@wixelhq.com"
   s.files       = ["lib/purrrl.rb"]
   s.homepage    = "https://github.com/Wixel/Purrrl"
   s.license     = "GPL"
- s.executables << 'purrrl'
+  s.executables << 'purrrl'
+  s.executables << 'prl'
   
   s.add_dependency 'thor', '~> 0.19', '>= 0.19.1'
   s.add_dependency 'colorize', '~> 0.7', '>= 0.7.3'

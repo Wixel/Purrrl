@@ -13,23 +13,38 @@ gem install purrrl
 
 ## Example Usage
 
-Firstly, you need to authorise your machine to use the service:
+###### Firstly, you need to authorise your machine to use the service:
 
 ```shell
-purrrl login you@you.com yourpassword
+purrrl login
 ````
 
-To upload a file from your local machine to the service, type the following:
+###### To upload a file from your local machine to the service, type the following:
 
 ```shell
 purrrl upload filepath
 ````
+After receiving your file, the server generates an MD5 hash of the uploaded file and outputs it in the headers of the download page. You can use this for security verification purposes.
 
-Show a list of all your uploaded files using: 
+###### Show a list of all your uploaded files using: 
 
 ```shell
 purrrl files
 ````
+
+###### Delete an uploaded file resource:
+
+```shell
+purrrl rm full_url
+````
+
+###### Searching files using grep:
+
+```shell
+purrrl files | grep 'query'
+````
+
+Instead of using the full `purrrl` command, you also have a shorthand version called `prl`
 
 ## Legal
 
