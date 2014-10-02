@@ -5,7 +5,6 @@ require 'json'
 require 'filesize'
 require 'io/console'
 require 'uri/http'
-require 'pp'
 
 class Purrrl < Thor
   # Return the base URL of the API service
