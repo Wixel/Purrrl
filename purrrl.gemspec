@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.version     = "0.0.4"
   s.date        = "2014-10-02"
   s.summary     = "Share files using your terminal"
-  s.description = "Fast & simple file sharing for developers - http://purrrl.link"
+  s.description = "Fast and simple file sharing for developers - <a href='http://purrrl.link'>http://purrrl.link</a>"
   s.authors     = ["Sean Nieuwoudt"]
   s.email       = "sean@wixelhq.com"
   s.files       = ["lib/purrrl.rb"]
