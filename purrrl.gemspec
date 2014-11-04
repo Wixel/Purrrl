@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "purrrl"
-  s.version     = "0.0.8"
+  s.version     = "0.0.9"
   s.date        = "2014-10-03"
   s.summary     = "Share files using your terminal"
   s.description = "Fast and simple file sharing for developers - http://purrrl.link"
