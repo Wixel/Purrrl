@@ -44,6 +44,12 @@ purrrl rm full_url
 purrrl ls | grep 'query'
 ````
 
+###### Uploading files from remote sources
+
+```shell
+purrrl upload_remote 'http://path-to-remote-file'
+````
+
 Instead of using the full `purrrl` command, you also have a shorthand version called `prl`
 
 ## Legal

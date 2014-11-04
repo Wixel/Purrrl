@@ -5,6 +5,7 @@ require 'json'
 require 'filesize'
 require 'io/console'
 require 'uri/http'
+require 'uri'
 
 class Purrrl < Thor
   # Return the base URL of the API service
@@ -128,7 +129,7 @@ class Purrrl < Thor
       print "Uploading file to... #{remote_path} ".green
       
       begin
-        result = RestClient.post(Purrrl.get_upload_path, {
+        result = RestClient.post(remote_path, {
           :file => File.new(file, 'rb')
         })
         print "✓ Done, happy sharing \n".blue
@@ -196,6 +197,27 @@ class Purrrl < Thor
       puts e.message.red
     end    
   end  
+  
+  desc "upload_remote <url>", "Upload a file from a remote resource or site"
+  def upload_remote(path)
+    begin
+      remote_path = Purrrl.get_upload_path
+
+      print "Uploading file to... #{remote_path} ".green
+            
+      result = RestClient.post(remote_path, {
+        :file => {
+          :filename    => URI.parse(path).path.split('/').last,
+          :type        => nil,
+          :tempfile    => nil,
+          :remote_path => path
+        }
+      })
+      print "✓ Done, happy sharing \n".blue
+    rescue Exception => e
+      print "✗ Failed, #{e.message.red} \n".red
+    end    
+  end
   
 end
 
