@@ -189,7 +189,7 @@ class Purrrl < Thor
       }))      
       
       if response["success"]
-        puts "✓ File remove".green
+        puts "✓ File removed".green
       else
         puts "✗ #{response["message"]}".red
       end
